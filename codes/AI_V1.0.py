@@ -6,6 +6,7 @@ import time
 import cv2
 import numpy as np
 from dataclasses import dataclass 
+import pprint
 
 # 좌표의 구조체 선언
 @dataclass
@@ -15,6 +16,7 @@ class Pos:
 
 start = Pos(830, 250)           # 캡쳐할 시작 좌표
 end   = Pos(1680, 750)          # 캡쳐할 끝 좌표
+
 
 time.sleep(1);
 pg.moveTo(start.x, start.y)     # 시작 위치로 이동
@@ -45,15 +47,12 @@ appleImages = [
 # 템플릿 이미지들을 읽어와서 리스트에 저장
 templates = [cv2.imread(file, cv2.IMREAD_COLOR) for file in appleImages]
 
-# 주어진 이미지에서 가장 유사한 이미지의 번호를 찾는 함수 (수정필요)
+# 주어진 이미지에서 가장 유사한 이미지의 번호를 찾는 함수
 def findSimilarImageIndex(targetImage, templates):
     similarities = []
 
     for template in templates:
-        targetImageHeight, targetImageWidth, _ = targetImage.shape
-        templateResized = cv2.resize(template, (targetImageHeight, targetImageWidth))
-
-        result = cv2.matchTemplate(targetImage, templateResized, cv2.TM_CCOEFF_NORMED)
+        result = cv2.matchTemplate(targetImage, template, cv2.TM_CCOEFF_NORMED)
         minVal, maxVal, minLoc, maxLoc = cv2.minMaxLoc(result)
         similarities.append(maxVal)
 
@@ -84,7 +83,7 @@ for i in range(10):
         cv2.imwrite('C:\\Users\\Lee\\appleGame\\capturedAppleImages\\{0}.png'.format(i * 17 + j), subImage)
         
         # 각 사과 부분을 1~9의 정수로 변환하여 저장
-        # grid[i, j] = round(findSimilarImageIndex(subImage, templates))
+        grid[i, j] = round(findSimilarImageIndex(subImage, templates)) + 1
 
 # 2차원 배열 출력
-print(*grid)
+pprint.pprint(grid)
