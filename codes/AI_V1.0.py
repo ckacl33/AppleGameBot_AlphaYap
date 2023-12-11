@@ -82,7 +82,7 @@ for i in range(10):
 
         subImage = screenshot[startX:endX, startY:endY, :]
 
-        cv2.imwrite('C:\\Users\\Lee\\appleGame\\capturedAppleImages\\{0}.png'.format(i * 17 + j), subImage)
+        # cv2.imwrite('C:\\Users\\Lee\\appleGame\\capturedAppleImages\\{0}.png'.format(i * 17 + j), subImage)
         
         # 각 사과 부분을 1~9의 정수로 변환하여 저장
         grid[i][j] = round(findSimilarImageIndex(subImage, templates)) + 1
@@ -107,7 +107,7 @@ def check(sx, sy, ex, ey):
 def deletApple(sx, sy, ex, ey):
     print( start.x + subImageWidth * sy, start.y + subImageHeight * sx, " -> " , start.x + subImageWidth * ey, start.y + subImageHeight * ex)
     pg.moveTo(start.x + subImageWidth * sy, start.y + subImageHeight * sx) 
-    pg.dragTo(start.x + subImageWidth * (ey + 1) + 15, start.y + subImageHeight * (ex + 1) + 15, 2, button='left') # 시작 좌표, 끝 좌표, 드래그 시간
+    pg.dragTo(start.x + subImageWidth * (ey + 1) + 15, start.y + subImageHeight * (ex + 1) + 15, 1.3, button='left') # 시작 좌표, 끝 좌표, 드래그 시간 (1.3초가 정확도 괜찮은듯)
 
 # 삭제된 부분 0으로 바꾸기
 def makeZero(sx, sy, ex, ey):
