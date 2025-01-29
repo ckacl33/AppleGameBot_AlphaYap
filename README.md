@@ -21,5 +21,5 @@ https://www.gamesaien.com/game/fruit_box_a/
 
 --------------------
 
-#AlphaYap
+# AlphaYap
 변경사항: 알고리즘 수정, 화면 캡쳐 위치 커스텀 조정
