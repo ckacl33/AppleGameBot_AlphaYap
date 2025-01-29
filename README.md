@@ -19,3 +19,7 @@ https://www.gamesaien.com/game/fruit_box_a/
 
 아 근데 이게 최선일지 잘 모르겠네요..
 
+--------------------
+
+#AlphaYap
+변경사항: 알고리즘 수정, 화면 캡쳐 위치 커스텀 조정
